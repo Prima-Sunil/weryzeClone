@@ -3,11 +3,15 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ProductClient from "./product-client";
 
-interface ProductPageProps {
-  params: {
-    slug: string;
-  };
-}
+// Define the params type separately to avoid TypeScript errors with Next.js 15
+type Params = {
+  slug: string;
+};
+
+// Use this type for the generateMetadata and page component
+type Props = {
+  params: Params;
+};
 
 export function generateStaticParams() {
   return products.map((product) => ({
@@ -15,7 +19,7 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: ProductPageProps): Metadata {
+export function generateMetadata({ params }: Props): Metadata {
   const product = getProductBySlug(params.slug);
 
   if (!product) {
@@ -31,7 +35,7 @@ export function generateMetadata({ params }: ProductPageProps): Metadata {
   };
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
+export default function ProductPage({ params }: Props) {
   const product = getProductBySlug(params.slug);
 
   if (!product) {

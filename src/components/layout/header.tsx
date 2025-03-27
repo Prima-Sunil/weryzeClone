@@ -12,9 +12,9 @@ export default function Header() {
   const { totalItems, toggleCart } = useCart();
 
   return (
-    <header className="bg-white sticky top-[34px] z-40 shadow-sm">
-      <div className="container-custom">
-        <div className="flex justify-between items-center h-20">
+    <header className="bg-white sticky top-0 md:top-[34px] z-50 shadow-sm">
+      <div className="container-custom px-4 md:px-6">
+        <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/">
@@ -23,32 +23,31 @@ export default function Header() {
                 alt="Ryze Logo"
                 width={150}
                 height={60}
-                className="h-auto"
+                className="h-auto max-w-[120px] md:max-w-[150px]"
                 priority
               />
             </Link>
           </div>
 
-          {/* Desktop Navigation
-          <nav className="hidden md:flex items-center gap-8">
-            <Link href="/collections/ryze-gums" className="font-bold uppercase text-sm hover:text-[#da0d21]">
-              SHOP RYZE
-            </Link>
-            <Link href="/pages/contact" className="font-bold uppercase text-sm hover:text-[#da0d21]">
-              CONTACT US
-            </Link>
-          </nav> */}
-
           {/* Right Side Icons */}
-          <div className="flex items-center gap-4">
-          <Link href="/collections/ryze-gums" className="font-bold uppercase text-sm hover:text-[#da0d21]">
+          <div className="flex items-center gap-3 md:gap-4">
+            <Link 
+              href="/collections/ryze-gums" 
+              className="hidden md:block font-bold uppercase text-xs md:text-sm hover:text-[#da0d21]"
+            >
               SHOP RYZE
             </Link>
-            <Link href="/pages/contact" className="font-bold uppercase text-sm hover:text-[#da0d21]">
+            <Link 
+              href="/pages/contact" 
+              className="hidden md:block font-bold uppercase text-xs md:text-sm hover:text-[#da0d21]"
+            >
               CONTACT US
             </Link>
-            <button className="p-2 hover:text-[#da0d21]" aria-label="Search">
-              <SearchIcon className="w-5 h-5" />
+            <button 
+              className="p-2 hover:text-[#da0d21]" 
+              aria-label="Search"
+            >
+              <SearchIcon className="w-4 h-4 md:w-5 md:h-5" />
             </button>
             <LoginPopup />
             <div className="relative">
@@ -57,7 +56,7 @@ export default function Header() {
                 aria-label="Cart"
                 onClick={toggleCart}
               >
-                <ShoppingCartIcon className="w-5 h-5" />
+                <ShoppingCartIcon className="w-4 h-4 md:w-5 md:h-5" />
                 {totalItems > 0 && (
                   <span className="absolute -top-1 -right-1 bg-[#da0d21] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                     {totalItems}
@@ -75,14 +74,11 @@ export default function Header() {
           </div>
         </div>
       </div>
-      
-      {/* Yellow/Gold Bar */}
-      {/* <div className="w-full h-2 bg-[#dfa43b]"></div> */}
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white">
-          <div className="container-custom py-4">
+        <div className="fixed inset-0 z-50 bg-white overflow-y-auto animate-fade-in">
+          <div className="container-custom py-4 px-4 md:px-6">
             <div className="flex justify-end">
               <button
                 onClick={() => setIsMenuOpen(false)}
@@ -92,7 +88,7 @@ export default function Header() {
                 <X className="w-6 h-6" />
               </button>
             </div>
-            <nav className="flex flex-col gap-6 py-6">
+            <nav className="flex flex-col gap-4 md:gap-6 py-6">
               <Link
                 href="/collections/ryze-gums"
                 className="font-bold uppercase text-lg hover:text-[#da0d21]"
@@ -142,4 +138,3 @@ export default function Header() {
     </header>
   );
 }
-
